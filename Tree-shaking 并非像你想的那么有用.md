@@ -1,5 +1,6 @@
 #  为什么webpack2的Tree Shaking并非像你想的那么高效？
 
+原文链接   [Why Webpack 2's Tree Shaking is not as effective as you think](https://advancedweb.hu/2017/02/07/treeshaking/)
 
   随着webpack2不断发展，Tree Shaking通过静态分析技术去除exports中没有用到的方法，正逐渐成为主流。开发者对它期待挺高，期待能解决package过大这个迫切的问题。通常情况，我们只需要某个依赖的部分代码片段，但是整个包却被打包到bundle中，导致了包体积增大。
   
