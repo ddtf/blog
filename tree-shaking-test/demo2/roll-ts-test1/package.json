@@ -1,0 +1,28 @@
+{
+  "name": "roll-ts-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "dist/index.js",
+  "module": "dist/rindex.mjs",
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.18.0",
+    "babelrc-rollup": "^3.0.0",
+    "eslint": "^3.12.2",
+    "istanbul": "^0.4.5",
+    "lodash-es": "^4.17.4",
+    "mocha": "^3.2.0",
+    "rollup": "^0.37.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-istanbul": "^1.1.0",
+    "rollup-watch": "^2.5.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
