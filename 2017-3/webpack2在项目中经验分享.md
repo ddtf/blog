@@ -2,6 +2,8 @@
 
 > 本文结合在在最近实际项目中应用，分享一些自己使用心得；不讲解基础的api，需要的话自行查阅。
 
+> 感谢组内小伙伴 [francis-su](https://github.com/francis-su)、[opendb2](https://github.com/opendb2) ，两位都做了许多基础行工作，逐步完善了现在的这套流程，感谢你们～同时欢迎加粉[changfuguo](https://github.com/changfuguo);另外[opendb2](https://github.com/opendb2)是一位很帅气很潮的帅哥，欢迎妹子勾搭；哈哈哈
+
 
 # 一、前言
 
@@ -873,6 +875,10 @@ module.exports = BuildEntries;
 ## 6.6 同构
 
 目前是在服务端nginx做的静态proxy，没有经过服务端，如果对seo以及速度有要求，目前的vue/react在服务端渲染也是一个不错的优化方法（这个实现程度看领导对目前速度的忍受程度，自行实践吧，目前不好推，如果以后上node服务了，可以考虑）
+
+## 6.7 单测
+
+在之前的react项目，[francis-su](https://github.com/francis-su)已经加上了，本次的vue项目准备逐步启动；
 
 
 
