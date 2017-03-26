@@ -1,19 +1,18 @@
 # 基于webpack2的项目过程构建
 
-> 本文结合在在最近实际项目中应用，分享一些自己使用心得；不讲解基础的api，需要的话自行查阅。
+> 本文结合最近几个项目的实践，分享一些自己使用心得；不讲解基础的api，需要的话自行查阅。
 
-> 感谢组内小伙伴 [francis-su](https://github.com/francis-su)、[opendb2](https://github.com/opendb2) ，两位都做了许多基础行工作，逐步完善了现在的这套流程，感谢你们～同时欢迎加粉[changfuguo](https://github.com/changfuguo);另外[opendb2](https://github.com/opendb2)是一位很帅气很潮的帅哥，欢迎妹子勾搭；哈哈哈
-
+> 感谢组内小伙伴 [francis-su](https://github.com/francis-su)、[A.我大概是只，成功的猫](https://github.com/opendb2) ，两位都做了许多基础工作，逐步完善了现在的这套流程，感谢你们～同时欢迎加粉[changfuguo](https://github.com/changfuguo);另外[A.我大概是只，成功的猫](https://github.com/opendb2)是一位很帅气很潮的帅哥，欢迎妹子勾搭～
 
 # 一、前言
 
-基本用法网上资料介绍的够多了，webpack2和1之间的差异也不是很多，影响比较大的loader写法参考api即可。这里另外的维度，开发环境（开发、测试，沙盒、线上）以及应用环境（web、hybird），如图
+基本用法网上介绍的够多了，webpack2和1之间的差异也不是很大，该懂比较大的是loader写法，参考api即可。本文从开发整个流程出发：开发环境（开发、测试，沙盒、线上）以及应用环境（web、hybird）进行总结，如图
 
 ![](https://raw.githubusercontent.com/changfuguo/share/master/images/webpack2_arc/webpack2.png)
 
-发布上线后，运行到环境可能是web浏览器也可能是app端内，目前根据是否依赖bridge归结由以下三种情况：
+发布上线后，运行环境可能是web浏览器也可能是app端内，目前根据是否依赖jsbdrige归结为以下三种情况：
 
-1） 只跑在端内，web不支持，可以将编译后的文件打包在端内；该类型请求数据必需依赖app，也就是必须要有bridge
+1） 只跑在端内，web不支持，可以将编译后的文件打包在端内；该类型请求数据必需依赖app，也就是必须要有jsbdrige
 
 2）既在web上又跑在端内，这种运行环境，数据请求不依赖jsbridge，其他功能还对jsbridge有弱依赖，如分享调起其他app
 
@@ -24,7 +23,7 @@
 
 ![](https://raw.githubusercontent.com/changfuguo/share/master/images/webpack2_arc/webpack.arc.png)
 
-对于其他环境，不依赖本地服务的，编译时全部注入jsbdrige（如果需要的话）
+对于其他环境，不依赖本地服务的（mock 或proxy 服务），编译时全部注入jsbdrige（如果需要的话）
 
 综合上述不同开发环境和运行环境，我门这里用到的webpack开发流程如下：
 
@@ -32,7 +31,7 @@
 
 # 二、目录结构
 
- 当前目录规范结构如下，dist产出目录
+ 当前目录规范结构如下，dist_*产出目录
  
 ![](https://raw.githubusercontent.com/changfuguo/share/master/images/webpack2_arc/arc.png)
 
@@ -229,7 +228,7 @@ module.exports = {
  
  2、如果是local环境，在node中手动打包，并导出compiler句柄到node本地服务的热更新插件
  
- 3、编译业务代码之前，先编译lib，再copy运行时变量，得到返回的lib信息加要注入的js 通过BuildPage写入到HtmlWebpackPlugin
+ 3、编译业务代码之前，先编译lib，再copy运行时变量，得到返回的lib信息加上要注入的其它js， 通过BuildPage写入到HtmlWebpackPlugin插件
  
  
 ## 3.2 lib构建 
@@ -239,7 +238,7 @@ module.exports = {
 
 ![](https://raw.githubusercontent.com/changfuguo/share/master/images/webpack2_arc/lib.png)
 
-没代码说个jb，看
+没代码说个xx，看，
 
 ```
 
@@ -385,7 +384,7 @@ module.exports = webpacklib;
 > 1、对于lib来说，更新频率最少；对整个团队开发，由于生成缓存文件的依据是name+version,所以package.json的依赖必须是指定某个版本，在安装时才能保证整个团队版本一致，否则有可能出现每个人提交的代码不一致；
 
 -------
-> 2、buildLibrary.findLibrary负责根据传入到vendors名称及版本号生成的md5去build/vendeos查找当前lib名称文件夹是否存在，存在查找md5对应的文件夹是否存在,如果存在返回lib构建信息以及manifest.json地址，
+> 2、buildLibrary.findLibrary负责根据传入到vendors名称及版本号生成的md5去build/vendeos查找当前lib名称文件夹是否存在，如果存在则查找对应md5文件夹是否存在,如果存在返回lib构建信息以及manifest.json地址；
 
 > 3、对于lib构建，不区分环境，直接按照线上要求来构建，直接压缩
 
@@ -497,20 +496,20 @@ module.exports = BuildLibrary;
 
 ## 3.3配置文件复制
 
-文件复制，主要指根据不同开发环境配置api接口（目前主要是这个需求，其他需求可以一同配置），在有bridge的情况下，抹平通过bridge和ajax数据请求的差异；
+文件复制，主要指根据不同开发环境配置api接口（目前主要是这个需求，其他需求可以一同配置），在有jsbdrige的情况下，抹平通过bridge和ajax数据请求的差异；
 
 ### 3.3.1 配置文件
 
 配置文件有两种做法；
 
-第一讲所有环境配置放倒一个文件里，在webpack编译通过自定义环境变量读取配置，省事，但是会把开发和环境配置暴漏到外部；
+第一将所有环境配置放倒一个文件里，在webpack编译通过设置环境变量读取配置，省事，用if语句判断的话，没用到的else语句会被uglify插件干掉；
 
-第二方法，编译时根据配置文件动态写入文件到固定地址，虽然麻烦，但是不会暴漏内部地址
+第二方法，编译时根据配置文件动态写入文件到固定地址，麻烦一点但是可配置性高，比较统一
 
 
 ### 3.3.2 数据请求文件
 
-对于不依赖bridge的可以略过此步；对于以来bridge的，需要准备两份底层的数据请求文件，如request.bridge.js,request.web.js分别代表用ajax和bridge发请求，根据需求决定将那个复制为request.js 供运行时调用（注：即使时hybird程序以来bridge，在开发期间可能由于壳没准备好，可能需要本地请求，这个是后来才加进去的，同时为兼顾标准的web请求，所以建议两份文件都准备)
+对于不依赖jsbdrige的可以略过此步；对于依赖jsbdrige的，需要准备两份底层的数据请求文件，如request.bridge.js,request.web.js分别代表用ajax和bridge发请求，根据需求决定将那个复制为request.js 供运行时调用（注：即使是hybird程序依赖jsbdrige，在开发期间可能由于app壳没准备好，可能需要本地请求，这个是后来才加进去的，同时为兼顾标准的web请求，所以建议两份文件都准备)
 
 
 
@@ -682,7 +681,7 @@ module.exports = function (req, res, next) {
 
 ## 5.1 tree shaking 
 
-tree shaking 是webpack2的主打亮点，实现思路是根据es导出静态性质，分析无用代码
+tree shaking 是webpack2的主打亮点，实现思路是根据es导出的静态性质，分析无用代码
 首先在.bablerc配置 preset如下，告诉babel采用es6的模块导出方法
 
 ```
