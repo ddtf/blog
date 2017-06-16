@@ -2,7 +2,7 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.didichuxing.drivercommunity",
-    "sha256_cert_fingerprints": ["61:3C:C8:29:90:29:38:FE:40:74:BB:C8:39:F1:FC:DD:33:26:40:DF:92:17:B9:5C:60:2B:D5:90:E8:2A:75:51"]
+    "package_name": "com.didichuxing.drivercommunity.debug",
+    "sha256_cert_fingerprints": ["F0:7F:BF:F2:A6:40:3B:C4:7B:EB:22:64:68:DE:29:B5:C6:6F:E2:36:A0:21:16:F2:56:3E:69:2C:1A:B2:42:1E"]
   }
 }]
