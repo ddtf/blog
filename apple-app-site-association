@@ -3,8 +3,8 @@
         "apps": [],
         "details": [
             {
-                "appID": "354B45DJML.com.xiaojukeji.drivercommunity1",
-                "paths": [ "/static/test/*"]
+                "appID": "4394J75KCV.com.xiaojukeji.drivercommunity",
+                "paths": ["/ios_link/*"]
             }
         ]
     }
