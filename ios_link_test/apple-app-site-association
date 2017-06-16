@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "354B45DJML.com.xiaojukeji.drivercommunity",
+                "paths": ["/ios_link_test/*"]
+            }
+        ]
+    }
+}
