@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh">
  <head>
@@ -11,53 +10,20 @@
  <body>
  <script type="text/javascript">
 
-function url2Params(url) {
-    var res = {}, query = url.substring(url.indexOf('?'));
-    query = query.trim().replace(/^(\?|#|&)/, '')
-
-    if (!query) {
-        return res
-    }
-
-    query.split('&').forEach(function(param) {
-        const parts = param.replace(/\+/g, ' ').split('=')
-        const key = decodeURIComponent(parts.shift())
-        const val = parts.length > 0
-            ? decodeURIComponent(parts.join('='))
-            : null
-
-        if (res[key] === undefined) {
-            res[key] = val
-        } else if (Array.isArray(res[key])) {
-            res[key].push(val)
-        } else {
-            res[key] = [res[key], val]
-        }
-    });
-
-    return res;
-}
-
     var ios_redirect_url = 'http://static.waveapi2.xiaojukeji.com/bamboo_spring/driver_employ.html#/introductionJobDetail/eyJpdiI6InczZFBHZ1BrVEF4S2prb1lBWXlOSHc9PSIsInZhbHVlIjoiaDNmMkswRjhucDNOSlROZzlRQnpnZz09IiwibWFjIjoiZDAxNjk3ODkwZDdkZmNmNjhlZjBlNmZhNTljNzYxZWY4ODA4YTVkNTY3ZWIxZTFiZmQwM2Y5MTRmMjMzODcyMiJ9';
-    
-  var params = url2Params(window.location.href);
-  var redirect_url = params['redirect_url'] || ios_redirect_url;
-
- </script>
-  <script type="text/javascript">
-  function openNew(e){
-    var target = e.target;
-    let url = target.getAttribute('href');
-    url = [url, '?', 'redirect_url=', encodeURIComponent(redirect_url)].join('');
-    target.setAttribute('href',url)
-        
-  }
-
   </script>
-    <a href="https://waveapi2.xiaojukeji.com/ios_link/index.html" onclick="javascript:openNew(event)"> IOS专用</a>
+    <a href="https://waveapi2.xiaojukeji.com/ios_link/index.html" class="open" > IOS专用</a>
     <p></p>
-    <a href="https://static.waveapi2.xiaojukeji.com/guyu_mobile/static/html/driver/faq.html"  onclick="javascript:openNew(event)"> Android专用</a>
+    <a href="https://static.waveapi2.xiaojukeji.com/guyu_mobile/static/html/driver/faq.html" class="open"> Android专用</a>
     <p></p>
-    <a href="guyu://wave.xiaojukeji.com/driver/workflow/guide/">schema android 跳转</a>
- </body>
+    <a href="guyu://wave.xiaojukeji.com/driver/workflow/guide/" class="open">schema android 跳转</a>
+ <script>
+  $('.open').on('click', function(e){
+    var target = e.target;
+    var url = target.getAttribute('href');
+    url = [url, '?', 'redirect_url=', encodeURIComponent(ios_redirect_url)].join('');
+    target.setAttribute('href',url)
+  });
+ </script>
+  </body>
 </html>
