@@ -30,3 +30,8 @@
 *****[rematrix](https://github.com/jlmakes/rematrix)*****
 
 > 这个可以直接用来生成 css所需要多矩阵
+
+
+> [dynamics](https://github.com/michaelvillar/dynamics.js)
+
+> coffee 写的缓动动画，但是我这里只需要transform相关的
