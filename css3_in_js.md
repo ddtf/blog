@@ -35,3 +35,6 @@
 > [dynamics](https://github.com/michaelvillar/dynamics.js)
 
 > coffee 写的缓动动画，但是我这里只需要transform相关的
+
+
+> https://github.com/bcherny/transform-to-matrix/blob/master/transform-to-matrix.js
