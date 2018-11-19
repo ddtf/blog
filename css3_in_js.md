@@ -46,3 +46,7 @@
 
 
 > https://developer.mozilla.org/zh-CN/docs/Web/API/WebGL_API/Matrix_math_for_the_web
+
+> https://github.com/mattdesl/tween-css-transform
+
+> https://github.com/daniel-lundin/snabbt.js/blob/master/src/matrix.js
