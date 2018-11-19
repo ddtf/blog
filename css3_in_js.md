@@ -38,3 +38,8 @@
 
 
 > https://github.com/bcherny/transform-to-matrix/blob/master/transform-to-matrix.js
+
+
+> https://jellybo.com/articles/article4.php
+
+
