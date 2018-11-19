@@ -50,3 +50,5 @@
 > https://github.com/mattdesl/tween-css-transform
 
 > https://github.com/daniel-lundin/snabbt.js/blob/master/src/matrix.js
+
+> https://gist.github.com/shogito/8436825
