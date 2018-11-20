@@ -52,3 +52,5 @@
 > https://github.com/daniel-lundin/snabbt.js/blob/master/src/matrix.js
 
 > https://gist.github.com/shogito/8436825
+
+> https://en.wikipedia.org/wiki/Transformation_matrix
