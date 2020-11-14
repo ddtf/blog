@@ -412,7 +412,7 @@ react-use 中的实现返回一个useCallback，将要执行的promise 作为一
 
 好了，本文到这就结束了，主要探讨下effect副作用在异步处理中遇到的一些坑以及解决办法，以及在promise上的一些扩展。要想深入了解hooks 还需要进一步了解hooks是如何在react 内部进行存储和调度的。
 
-
+# [同步git地址](https://github.com/ddtf/blog)
 # 参考文献
 
 
