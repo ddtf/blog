@@ -288,7 +288,6 @@ function requestHostCallback (callback) {
 ```
 
 ```port.postMessage(null)```  之后，会进入到```performWorkUntilDeadline```，来处理上一步的```scheduledHostCallback```，即flushWork。到此同步执行的任务队列处理就结束了，接下来会进入到调度的实体，总结下以上第一阶段的流程
-
 ![](https://pt-starimg.didistatic.com/static/starimg/img/pIacYEEnzd1612768070179.jpg)
 
 
